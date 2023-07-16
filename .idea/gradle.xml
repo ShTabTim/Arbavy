@@ -10,7 +10,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/app/sh_arb_engine" />
             <option value="$PROJECT_DIR$/app/sh_j_engine" />
           </set>
         </option>
