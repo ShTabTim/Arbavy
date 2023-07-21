@@ -1,4 +1,4 @@
-package com.sh_tab.sh_j_engine.systems.shmath;
+package com.sh_tab.sh_j_engine.shmath;
 
 public class vec2f {
     public float x0, x1;
@@ -17,24 +17,30 @@ public class vec2f {
         x1 += o.x1;
         return this;
     }
-    public vec2f inv() {
+    public vec2f minus(vec2f o) {
+        x0 -= o.x0;
+        x1 -= o.x1;
+        return this;
+    }
+    public vec2f minus() {
         x0 = -x0;
         x1 = -x1;
         return this;
     }
-    public vec2f scl(double s) {
-        x0 *= s;
-        x1 *= s;
-        return this;
+    public<T> vec2f scl(T  s) {
+        return scl((float)s);
     }
     public vec2f scl(float s) {
         x0 *= s;
         x1 *= s;
         return this;
     }
-    public vec2f scl(int s) {
-        x0 *= s;
-        x1 *= s;
+
+    public vec2f rotate(float a) {
+        a*=2*Math.PI;
+        float _x0 = x0, sin = (float) Math.sin(a), cos = (float) Math.cos(a);
+        x0 =  _x0*cos + x1*sin;
+        x1 = -_x0*sin + x1*cos;
         return this;
     }
 }

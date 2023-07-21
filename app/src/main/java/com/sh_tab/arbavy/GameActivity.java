@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.View;
 
-import com.sh_tab.sh_j_engine.gameObjects.Scene;
+import com.sh_tab.sh_j_engine.nodes.Scene;
 
 import java.util.ArrayList;
 

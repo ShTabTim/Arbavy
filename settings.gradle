@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "Arbavy"
 include ':app'
 include ':app:sh_j_engine'
+include ':app:sh_ogl_lib'
