@@ -23,10 +23,10 @@ public class MainActivity extends Activity {
             finish();
             return;
         }
-        RendererGLES20 rr = new RendererGLES20();
         glSurfaceView = new GLSurfaceView(this);
         glSurfaceView.setEGLContextClientVersion(2);
         glSurfaceView.setEGLConfigChooser(false);
+        RendererGLES20 rr = new RendererGLES20();
         glSurfaceView.setRenderer(rr);
         glSurfaceView.setOnClickListener(new View.OnClickListener() {
             @Override

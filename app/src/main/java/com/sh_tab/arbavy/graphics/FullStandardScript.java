@@ -11,27 +11,34 @@ import java.nio.ShortBuffer;
 
 public class FullStandardScript extends Script {
 
-    public Uniform uCamera;
+    public Uniform uInvCamera;
+    public Uniform uCamPos;
+    public Uniform uCamSiz;
     public Uniform uModel;
-    public Uniform uTexture;
     public Attribute aPosition;
-    public Attribute aUV;
     public Attribute aColorM;
     public Attribute aColorA;
+    public Attribute aUV;
+    public Uniform uTexture;
 
     String vertexShader =
-            "uniform mat4 uCamera;\n" +
-            "uniform mat4 uModel;\n" +
+            "uniform mat2 uInvCamera;\n" +
+            "uniform vec2 uCamPos;\n" +
+            "uniform vec2 uCamSiz;\n" +
+            "uniform mat2 uModel;\n" +
             "attribute vec4 aPosition;\n" +
+            "attribute vec2 aUV;\n" +
             "attribute vec4 aColorM;\n" +
             "attribute vec4 aColorA;\n" +
-            "attribute vec2 aUV;\n" +
             "varying vec4 vColorM;\n" +
             "varying vec4 vColorA;\n" +
             "varying vec2 vUV;\n" +
             "\n" +
             "void main() {\n" +
-            "   gl_Position = uCamera*uModel*aPosition;\n" +
+            "   vec2 po = uInvCamera*((uModel*(aPosition.xy))-uCamPos);\n" +
+            "   po.x /= uCamSiz.x;\n" +
+            "   po.y /= uCamSiz.y;\n" +
+            "   gl_Position = vec4(po.x, po.y, aPosition.z, 1);\n" +
             "   vUV = aUV;\n" +
             "   vColorM = aColorM;\n" +
             "   vColorA = aColorA;\n" +
@@ -45,13 +52,15 @@ public class FullStandardScript extends Script {
             "uniform sampler2D uTexture;\n" +
             "\n" +
             "void main() {\n" +
-            "   gl_FragColor = texture2D( uTex, vUV ) * vColorM + vColorA;\n" +
+            "   gl_FragColor = texture2D(uTexture, vUV)*vColorM + vColorA;\n" +
             "}\n";
 
     public FullStandardScript() {
         super();
         compile(vertexShader, fragmentShader);
-        uCamera = uniform("uCamera");
+        uInvCamera = uniform("uInvCamera");
+        uCamPos = uniform("uCamPos");
+        uCamSiz = uniform("uCamSiz");
         uModel = uniform("uModel");
         uTexture = uniform("uTexture");
         aColorM = attribute("aColorM");

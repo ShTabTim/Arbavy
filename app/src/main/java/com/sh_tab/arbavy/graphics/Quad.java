@@ -9,14 +9,14 @@ public class Quad {
     // 0---1
     // | \ |
     // 3---2
-    public static final short[] vertexes = {0, 1, 2, 0, 2, 3};
+    public static final short[] vertexes = {0, 1, 2, 1, 2, 3};
     public static final int amount = vertexes.length;
 
     private static ShortBuffer indices;
     private static int indexSize = 0;
 
     public static FloatBuffer create() {
-        return ByteBuffer.allocateDirect(2*Float.SIZE).order(ByteOrder.nativeOrder()).asFloatBuffer();
+        return ByteBuffer.allocateDirect((4*13)*Float.SIZE/8).order(ByteOrder.nativeOrder()).asFloatBuffer();
     }
 
     public static FloatBuffer createSet(int size) {

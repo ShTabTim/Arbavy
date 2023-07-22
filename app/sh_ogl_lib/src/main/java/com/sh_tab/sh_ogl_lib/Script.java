@@ -40,8 +40,8 @@ public class Script extends Program {
         currentScriptClass = null;
     }
 
-    public void compile(String frag, String vert) {
-        super.create(new Shader(GLES20.GL_FRAGMENT_SHADER, frag), new Shader(GLES20.GL_VERTEX_SHADER, vert));
+    public void compile(String vert, String frag) {
+        super.create(new Shader(GLES20.GL_VERTEX_SHADER, vert), new Shader(GLES20.GL_FRAGMENT_SHADER, frag));
     }
 
     public void unuse() {}

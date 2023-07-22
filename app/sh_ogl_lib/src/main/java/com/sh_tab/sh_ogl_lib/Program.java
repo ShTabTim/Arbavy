@@ -31,7 +31,7 @@ public class Program {
         }
     }
 
-    public void create(Shader ... shaders) {
+    public void create(Shader ... shaders){
         for (Shader shader : shaders) {
             attachShader(shader);
         }
